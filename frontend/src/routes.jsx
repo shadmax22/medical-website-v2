@@ -20,26 +20,26 @@ export const routes = [
 
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
+        name: "Admin dashboard",
         path: "/home",
         element: <AdminDashboard />,
       },
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
-        path: "/doctore/home",
+        name: "Doctor Dashboard",
+        path: "/doctor",
         element: <DoctorDashboard />,
       },
       {
         icon: <HomeIcon {...icon} />,
-        name: "Doctor Dashboard",
-        path: "/patients/home",
+        name: "Patients Dashboard",
+        path: "/patients_dashboard",
         element: <PatientDashboard />,
       },
       {
         icon: <UserCircleIcon {...icon} />,
         name: "Patients Management",
-        path: "/patients",
+        path: "/patients_profile",
         element: <PatientsProfiles />,
       },
       {

@@ -204,13 +204,22 @@ function AddDoctor() {
         )}
       </div>
 
-      {/* ------------------------- SUBMIT BUTTON -------------------------- */}
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition sticky bottom-0"
-      >
-        Add Doctor
-      </button>
+      <div className="flex gap-2 sticky bottom-0">
+
+        {/* ------------------------- SUBMIT BUTTON -------------------------- */}
+        <button
+          type="submit"
+          className=" bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition "
+        >
+          Close
+        </button>
+        <button
+          type="submit"
+          className=" bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Add Doctor
+        </button>
+      </div>
 
     </form>
   );
