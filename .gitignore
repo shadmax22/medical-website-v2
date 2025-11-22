@@ -253,7 +253,6 @@ playwright-report/
 # Misc
 *.pem
 .certificates/
-
 .vite
 <<<<<<< HEAD
 =======
