@@ -3,7 +3,7 @@ import {
   addTokenToLocalStorage,
   getTokenFromLocalStorage,
   removeTokenFromLocalStorage,
-} from "../../utils/Local-Storage";
+} from "@/utils/Local-Storage"
 import {
   loginUserThunk,
   logoutUserThunk,
