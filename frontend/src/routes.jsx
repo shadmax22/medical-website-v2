@@ -32,13 +32,13 @@ export const routes = [
       },
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
+        name: "Doctor Dashboard",
         path: "/patients/home",
         element: <PatientDashboard />,
       },
       {
         icon: <UserCircleIcon {...icon} />,
-        name: "patients",
+        name: "Patients Management",
         path: "/patients",
         element: <PatientsProfiles />,
       },
