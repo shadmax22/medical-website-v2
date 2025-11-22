@@ -12,8 +12,8 @@ import AuthDialogContext from "@/app/context/AuthDialogContext";
 
 const Signin = ({signInOpen}:{signInOpen?:any}) => {
   const { data: session } = useSession();
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("admin123");
+  const [username, setUsername] = useState("aravindkmr007@gmail.com");
+  const [password, setPassword] = useState("admin@123");
   const [error, setError] = useState("");
   const authDialog = useContext(AuthDialogContext);
 
