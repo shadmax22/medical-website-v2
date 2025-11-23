@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@routes/*": ["./src/routes/*"],
+      "@controller/*": ["./src/controllers/*"],
+      "@blueprint/*": ["./src/blueprint/*"],
+      "@config/*": ["./src/config/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@services/*": ["./src/services/*"],
+      "@prismaclient/*": ["./prisma/generated"],
+      "@helpers/*": ["./src/helpers/*"]
+    },
+    "outDir": "./dist",
+    "strict": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["**/*.ts", "**/*.js"], // all files recursively from root
+  "exclude": ["dist", "node_modules", "tsup.config.ts"]
+}

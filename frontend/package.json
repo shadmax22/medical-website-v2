@@ -19,7 +19,8 @@
     "react-dom": "18.2.0",
     "react-easetools": "^0.0.782",
     "react-hook-form": "^7.66.1",
-    "react-router-dom": "6.17.0"
+    "react-router-dom": "6.17.0",
+    "react-usethis": "^0.2.1"
   },
   "devDependencies": {
     "@types/react": "18.2.31",
