@@ -64,6 +64,8 @@ Below are **example login credentials** for quick testing.
 
 
 **Tech Used**
+```
+
 backend/
 │
 ├── Fastify (Web Server)
@@ -89,6 +91,7 @@ backend/
     ├── bcrypt / argon2 (password hashing)
     ├── dotenv (env variables)
     └── nodemon (dev hot reload)
+```
 
 
 **Common commands**
@@ -114,6 +117,7 @@ Environment variables live in `backend/.env` (copy `.env.example` if provided) a
 | `vite.config.ts`, `package.json` | Vite + React configuration and scripts.                           |
 
 **Tech Stack**
+```
 frontend/
 │
 ├── Vite (Build Tool)
@@ -133,6 +137,7 @@ frontend/
     ├── postcss
     ├── autoprefixer
     └── tailwind.config.js
+```
 
 
 **Common commands**
