@@ -14,45 +14,64 @@ import {
 
 import React from "react";
 
-export function DoctorDashboard() {
+import { getDoctorDashboardData } from "@/services/doctor.service";
+import { useEffect, useState } from "react";
 
-    // --------------------------------------------------------------------------
-    // ALL DOCTOR DATA FROM ONE SOURCE
-    // --------------------------------------------------------------------------
-    const doctor_data = {
-        doctor: {
-            name: "Dr. Ritesh Sharma",
-            specialization: "Cardiologist",
-            email: "ritesh@hospital.com",
-            img: "/img/team-1.jpeg",
-        },
-
-        stats: {
-            assigned_patients: 18,
-            total_patients: 1080,
-            active_patients: 860,
-        },
-
-        assigned_patients: [
-            { name: "Shad Ali", age: 20, issue: "Chest Tightness", img: "/img/bruce-mars.jpeg", last_visit: "21 Nov 2025" },
-            { name: "Rahul Verma", age: 32, issue: "Chest Pain", img: "/img/team-2.jpeg", last_visit: "20 Nov 2025" },
-            { name: "Aman Gupta", age: 25, issue: "Irregular Heartbeat", img: "/img/team-3.jpeg", last_visit: "19 Nov 2025" },
-        ],
-
-        active_patients: [
-            { name: "Sara Khan", issue: "High BP", time: "Currently Under Treatment", img: "/img/team-4.jpeg" },
-            { name: "Anil Kumar", issue: "High Cholesterol", time: "Review Tomorrow", img: "/img/team-2.jpeg" },
-            { name: "Ravi Prakash", issue: "Shortness of Breath", time: "Today", img: "/img/team-1.jpeg" },
-        ],
-
-        all_patients: [
-            { name: "Aman Gupta", issue: "Heart Palpitations", email: "aman@gmail.com", img: "/img/team-1.jpeg" },
-            { name: "Priya Sharma", issue: "Fever", email: "priya@gmail.com", img: "/img/team-3.jpeg" },
-            { name: "Mohit Yadav", issue: "Back Pain", email: "mohit@gmail.com", img: "/img/team-2.jpeg" },
-            { name: "Sara Khan", issue: "High BP", email: "sara@gmail.com", img: "/img/team-4.jpeg" },
-        ],
+interface DoctorDashboardData {
+    doctor: {
+        name: string;
+        specialization: string;
+        email: string;
+        img: string;
     };
+    stats: {
+        assigned_patients: number;
+        total_patients: number;
+        active_patients: number;
+    };
+    assigned_patients: {
+        name: string;
+        age: number;
+        issue: string;
+        img: string;
+        last_visit: string;
+    }[];
+    active_patients: {
+        name: string;
+        issue: string;
+        time: string;
+        img: string;
+    }[];
+    all_patients: {
+        name: string;
+        issue: string;
+        email: string;
+        img: string;
+    }[];
+}
 
+export function DoctorDashboard() {
+    const [doctorData, setDoctorData] = useState<DoctorDashboardData | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getDoctorDashboardData();
+                setDoctorData(data);
+            } catch (error) {
+                console.error("Error fetching doctor data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (loading) return <div className="mt-12">Loading...</div>;
+    if (!doctorData) return <div className="mt-12">Error loading data</div>;
+
+    const doctor_data = doctorData;
 
     const statisticsCards = [
         {
@@ -144,7 +163,7 @@ export function DoctorDashboard() {
                                     <tr key={index}>
                                         <td className="py-3 px-6">
                                             <div className="flex items-center gap-4">
-                                                <Avatar src={img} alt={name} size="sm" />
+                                                <Avatar src={img} alt={name} title={name} size="sm" />
                                                 <div>
                                                     <Typography color="blue-gray">{name}</Typography>
                                                     <Typography className="text-xs text-blue-gray-500">
@@ -179,7 +198,7 @@ export function DoctorDashboard() {
                     <CardBody className="pt-0">
                         {doctor_data.active_patients.map(({ name, issue, time, img }, index) => (
                             <div key={index} className="flex items-center gap-4 border-b border-blue-gray-50 py-3 last:border-none">
-                                <Avatar src={img} size="sm" />
+                                <Avatar src={img} size="sm" title={name} alt={name} />
                                 <div>
                                     <Typography variant="small" color="blue-gray">
                                         {name}
@@ -228,7 +247,7 @@ export function DoctorDashboard() {
                                     <tr key={index}>
                                         <td className="py-3 px-6">
                                             <div className="flex items-center gap-4">
-                                                <Avatar src={img} alt={name} size="sm" />
+                                                <Avatar src={img} alt={name} title={name} size="sm" />
                                                 <Typography color="blue-gray">{name}</Typography>
                                             </div>
                                         </td>

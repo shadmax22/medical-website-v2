@@ -8,16 +8,17 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  email_id   String   @unique
-  phone_no   String
-  dob        DateTime
-  password   String
-  stat       String
-  role       String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id            String   @id @default(uuid())
+  name          String
+  email_id      String   @unique
+  phone_no      String
+  dob           DateTime
+  password      String
+  stat          String
+  role          String
+  current_issue String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
 
   doctor_profile   Doctor?
   trackings        Tracking[]

@@ -224,3 +224,83 @@ export async function assignPatient(request: FastifyRequest, reply: FastifyReply
         return reply.status(500).send({ message: "Error assigning patient", error });
     }
 }
+
+export async function getDoctorDashboardData(request: FastifyRequest, reply: FastifyReply) {
+    const doctorUser = (request as any).user;
+
+    try {
+        const doctor = await prisma.doctor.findUnique({
+            where: { user_id: doctorUser.id },
+            include: {
+                user: true,
+                patients: true
+            }
+        });
+
+        if (!doctor) {
+            return reply.status(404).send({ message: "Doctor not found" });
+        }
+
+        const total_patients = await prisma.user.count({ where: { role: 'user' } });
+
+        // Active patients (assigned and updated recently)
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+        const active_patients_count = await prisma.user.count({
+            where: {
+                role: 'user',
+                updated_at: { gte: thirtyDaysAgo }
+            }
+        });
+
+        const assigned_patients = doctor.patients.map(p => ({
+            name: p.name,
+            age: new Date().getFullYear() - new Date(p.dob).getFullYear(),
+            issue: p.current_issue || "General Checkup",
+            img: "/img/bruce-mars.jpeg",
+            last_visit: p.updated_at.toLocaleDateString()
+        }));
+
+        const active_patients_list = doctor.patients
+            .filter(p => p.updated_at >= thirtyDaysAgo)
+            .map(p => ({
+                name: p.name,
+                issue: p.current_issue || "General Checkup",
+                time: "Recently Updated",
+                img: "/img/team-4.jpeg"
+            }));
+
+        const all_patients = await prisma.user.findMany({
+            where: { role: 'user' },
+            take: 10
+        });
+
+        const formattedAllPatients = all_patients.map(p => ({
+            name: p.name,
+            issue: p.current_issue || "General Checkup",
+            email: p.email_id,
+            img: "/img/team-1.jpeg"
+        }));
+
+        return reply.send({
+            doctor: {
+                name: doctor.user.name,
+                specialization: doctor.specialization,
+                email: doctor.user.email_id,
+                img: "/img/team-1.jpeg"
+            },
+            stats: {
+                assigned_patients: doctor.patients.length,
+                total_patients,
+                active_patients: active_patients_count
+            },
+            assigned_patients,
+            active_patients: active_patients_list,
+            all_patients: formattedAllPatients
+        });
+
+    } catch (error) {
+        return reply.status(500).send({ message: "Error fetching doctor dashboard data", error });
+    }
+}

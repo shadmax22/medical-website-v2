@@ -28,7 +28,8 @@ export const getProfileFromLocalStorage = (): unknown => {
   return Token;
 };
 
-export const getTokenFromLocalStorage = (): string => {
+export const getTokenFromLocalStorage = (): string | null => {
+  if (!localStorage?.getItem("Token")) return null;
   const Token = JSON.parse(localStorage?.getItem("Token") || "null") || "";
   return Token;
 };

@@ -135,6 +135,7 @@ export function PatientPrescription({ data }: { data: unknown }) {
                 onClick={() => Modal({ title: "Hello world", body: () => <></> })}
                 src={expected_data.patient.avatar}
                 alt={expected_data.patient.name}
+                title={expected_data.patient.name}
                 size="xl"
                 variant="rounded"
                 className="rounded-lg shadow-lg shadow-blue-gray-500/40"
@@ -226,7 +227,7 @@ export function PatientPrescription({ data }: { data: unknown }) {
               <div className="flex flex-col gap-6 mb-6">
                 {expected_data.conversations.map((msg: { sender: string; avatar: string; message: string; time: string }, i: number) => (
                   <div key={i} className={`flex gap-3 ${msg.sender === "doctor" ? "justify-start" : "justify-end"}`}>
-                    <Avatar src={msg.avatar} size="sm" />
+                    <Avatar src={msg.avatar} size="sm" title={msg.sender === "doctor" ? "Doctor" : "Patient"} alt={msg.sender} />
 
                     <div className="bg-blue-gray-50 p-3 rounded-lg max-w-sm shadow-sm">
                       <Typography className="text-blue-gray-800 text-sm">{msg.message}</Typography>

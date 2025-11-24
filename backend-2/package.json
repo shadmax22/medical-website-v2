@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@fastify/cors": "^11.1.0",
     "@prisma/client": "^6.19.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
@@ -26,5 +27,8 @@
     "prisma:pull": "prisma db pull",
     "prisma:seed": "prisma db seed",
     "prisma:migrate": "npx prisma db push"
+  },
+  "prisma": {
+    "seed": "npx ts-node prisma/seed.ts"
   }
 }

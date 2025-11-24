@@ -52,7 +52,7 @@ export function Tables() {
                     <tr key={name}>
                       <td className={className}>
                         <div className="flex items-center gap-4">
-                          <Avatar src={img} alt={name} size="sm" variant="rounded" />
+                          <Avatar src={img} alt={name} title={name} size="sm" variant="rounded" />
                           <div>
                             <Typography
                               variant="small"
@@ -145,7 +145,7 @@ export function Tables() {
                     <tr key={name}>
                       <td className={className}>
                         <div className="flex items-center gap-4">
-                          <Avatar src={img} alt={name} size="sm" />
+                          <Avatar src={img} alt={name} title={name} size="sm" />
                           <Typography
                             variant="small"
                             color="blue-gray"

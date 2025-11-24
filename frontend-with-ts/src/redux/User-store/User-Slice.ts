@@ -29,7 +29,7 @@ interface FormInput {
 }
 
 const initialState: UserState = {
-  tokenLog: getTokenFromLocalStorage(),
+  tokenLog: getTokenFromLocalStorage() || "",
   isLoading: false,
   loginUsername: "",
   loginPassword: "",

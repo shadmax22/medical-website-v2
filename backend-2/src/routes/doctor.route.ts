@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { registerDoctor, getDoctors, getDoctorById, updateDoctor, deleteDoctor, createGoal, assignPatient } from "../controllers/doctor.controller";
+import { registerDoctor, getDoctors, getDoctorById, updateDoctor, deleteDoctor, createGoal, assignPatient, getDoctorDashboardData } from "../controllers/doctor.controller";
 
 import { authenticate } from "../middleware/auth.middleware";
 
@@ -15,4 +15,7 @@ export async function doctorRoutes(fastify: FastifyInstance) {
 
     // Assignment routes
     fastify.post("/assign-patient", { preHandler: authenticate }, assignPatient);
+
+    // Dashboard routes
+    fastify.get("/dashboard-data", { preHandler: authenticate }, getDoctorDashboardData);
 }

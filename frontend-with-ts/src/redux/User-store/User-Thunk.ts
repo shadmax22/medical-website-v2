@@ -1,5 +1,5 @@
 import authHeader from "../../utils/Auth-Header";
-import customFetch from "../../utils/Axios";
+import Api from "../../utils/Axios";
 import errorMessage from "../../utils/Error-Message";
 import { addTokenToLocalStorage } from "../../utils/Local-Storage";
 
@@ -22,7 +22,7 @@ export const loginUserThunk = async (
   thunkAPI: ThunkAPI
 ): Promise<string> => {
   try {
-    const response = await customFetch.post("/login", formInput, authHeader());
+    const response = await Api.post("/login", formInput, authHeader());
     setTimeout(() => {
       alert(`Login Successfull with username : ${response.data.msg.username}`);
     }, 250);
@@ -42,7 +42,7 @@ export const registerUserThunk = async (
   thunkAPI: ThunkAPI
 ): Promise<string> => {
   try {
-    const response = await customFetch.post(
+    const response = await Api.post(
       "/register",
       formInput,
       authHeader()
