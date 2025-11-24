@@ -1,7 +1,9 @@
 import { FastifyInstance } from "fastify";
+import { authenticate } from "../middleware/auth.middleware";
+import { getPrivateData } from "../controllers/private.controller";
 
 export async function privateRoutes(fastify: FastifyInstance) {
-    fastify.get("/private", async (request, reply) => {
-        return { message: "This is a private route" };
-    });
+    fastify.addHook("preHandler", authenticate);
+
+    fastify.get("/private", getPrivateData);
 }
