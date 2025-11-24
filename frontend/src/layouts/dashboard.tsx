@@ -7,7 +7,6 @@ import { Routes } from "react-router-dom";
 export function Dashboard() {
   const user_state = UserState();
   const user_state_data = user_state.get();
-  const [, dispatch] = useMaterialTailwindController();
 
   // Get routes based on user role
   const userRole = user_state_data?.user_data?.role as
