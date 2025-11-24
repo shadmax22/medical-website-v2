@@ -36,7 +36,7 @@ export function DashboardNavbar() {
   return (
     <Navbar
       color={fixedNavbar ? "white" : "transparent"}
-      className={`rounded-xl transition-all ${
+      className={`w-full rounded-xl transition-all ${
         fixedNavbar
           ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5"
           : "px-0 py-1"
@@ -44,7 +44,7 @@ export function DashboardNavbar() {
       fullWidth
       blurred={fixedNavbar}
     >
-      <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
+      <div className="w-full flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="capitalize">
           <b className="text-[30px] !text-blue-600">
             HealthCare
@@ -76,13 +76,13 @@ export function DashboardNavbar() {
             {page}
           </Typography>
         </div>
-        <div className="flex items-center">
-          <div className="flex gap-3   items-center justify-center h-full  bg-black py-2 px-4 rounded-full">
+        <div className="flex items-center w-full lg:w-fit ml-auto">
+          <div className="flex w-full lg:w-fit gap-3   items-center justify-center h-full  bg-black py-2 px-4 rounded-full ">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="flex gap-1 px-3 text-sm"
+                className="gap-1 px-1 lg:px-3 text-[10px] lg:text-sm flex items-center "
               >
                 {item.icon && <item.icon className="h-5 w-5" />}
                 <span>{item.label}</span>
@@ -170,7 +170,7 @@ export function DashboardNavbar() {
               </MenuList>
             </Menu>
             <Button
-              className="rounded-full"
+              className="rounded-full text-[10px] px-2 px-3"
               onClick={() => {
                 removeTokenFromLocalStorage();
                 window.location.reload();

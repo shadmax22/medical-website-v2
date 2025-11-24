@@ -2,6 +2,43 @@
 
 This repository hosts the full-stack health-coaching platform, including APIs, dashboards, and a marketing site. Each app lives at the repo root to keep concerns separated while still sharing a single toolchain and issue tracker.
 
+## Getting Started
+
+Click here to open [demo](https://medical-website-v2-bamtxi4nk-md-shad-alis-projects.vercel.app/).
+
+# 📌 Seeded Credentials (Sample Accounts)
+
+This project seeds initial users into the database using Prisma.
+Below are **example login credentials** for quick testing.
+
+---
+
+## 🛡️ **Admin Accounts**
+
+| Role  | Email           | Password       |
+| ----- | --------------- | -------------- |
+| Admin | `admin@hcl.com` | `Password123!` |
+
+---
+
+## 👨‍⚕️ **Doctor Accounts (First 2)**
+
+| Name             | Email                  | Password       |
+| ---------------- | ---------------------- | -------------- |
+| Dr. Alice Morton | `alice.morton@hcl.com` | `Password123!` |
+| Dr. Brian Singh  | `brian.singh@hcl.com`  | `Password123!` |
+
+---
+
+## 🧑‍🦰 **Patient Accounts (First 2)**
+
+| Name         | Email                  | Password       |
+| ------------ | ---------------------- | -------------- |
+| Emily Carter | `emily.carter@hcl.com` | `Password123!` |
+| Oliver West  | `oliver.west@hcl.com`  | `Password123!` |
+
+---
+
 ## Repository Layout
 
 ```
@@ -58,21 +95,9 @@ npm run build        # type-safe production build
 
 Frontend expects the backend to be running on `http://localhost:3000` (configured in `src/utils/Axios.ts`). Adjust or add a `.env` file if you expose a different API URL.
 
-### Landing (`landing/`)
-
-Marketing site implemented with Next.js + Tailwind. Useful commands:
-
-```bash
-cd landing
-npm install
-npm run dev
-```
-
-The site consumes static content from `landing/markdown` and assets under `landing/public/images`.
-
 ## Getting Started
 
-1. **Clone & install** — run `npm install` inside `backend`, `frontend`, and `landing`.
+1. **Clone & install** — run `npm install` inside `backend` and `frontend`
 2. **Configure environment** — copy `.env.example` (if present) in each app and fill secrets such as `DATABASE_URL` or JWT keys.
 3. **Prepare the database** — inside `backend`, run `npx prisma db push` followed by `npx prisma db seed`.
 4. **Start services**:
@@ -82,8 +107,5 @@ The site consumes static content from `landing/markdown` and assets under `landi
 
 ## Additional Notes
 
-- **Screenshots** are purely referential and not required for builds.
 - **Naming**: folders were renamed to `backend` and `frontend` for clarity; update any local scripts referencing the old names (`backend-2`, `frontend-with-ts`) before running automation.
 - **Monorepo tooling**: there is no root-level build pipeline; each app manages its own ESLint/TSConfig/lockfile.
-
-Feel free to extend this README as new services or shared packages are introduced. Happy hacking!

@@ -1,9 +1,7 @@
-import { setOpenConfigurator, useMaterialTailwindController } from "@/context";
+import { useMaterialTailwindController } from "@/context";
 import { getRoutesForRole } from "@/services/menu.service";
 import { UserState } from "@/state/UserState";
-import { Configurator, DashboardNavbar, Footer } from "@/widgets/layout";
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-import { IconButton } from "@material-tailwind/react";
+import { DashboardNavbar, Footer } from "@/widgets/layout";
 import { Routes } from "react-router-dom";
 
 export function Dashboard() {
@@ -20,18 +18,9 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <div className="px-3 py-3 lg:py-[50px] lg:px-[140px]">
+      <div className="px-3 py-3 lg:py-[50px] lg:px-[140px] mx-auto  2xl:!max-w-[80vw]">
         <DashboardNavbar />
-        <Configurator />
-        <IconButton
-          size="lg"
-          color="white"
-          className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
-          ripple={false}
-          onClick={() => setOpenConfigurator(dispatch, true)}
-        >
-          <Cog6ToothIcon className="h-5 w-5" />
-        </IconButton>
+
         <Routes>{roleRoutes}</Routes>
         <div className="text-blue-gray-600">
           <Footer />
