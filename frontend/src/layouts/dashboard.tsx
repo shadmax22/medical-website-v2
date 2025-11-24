@@ -1,4 +1,3 @@
-import { useMaterialTailwindController } from "@/context";
 import { getRoutesForRole } from "@/services/menu.service";
 import { UserState } from "@/state/UserState";
 import { DashboardNavbar, Footer } from "@/widgets/layout";
