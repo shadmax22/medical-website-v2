@@ -16,7 +16,7 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <div className="px-3 py-3 lg:py-[50px] lg:px-[140px] mx-auto  2xl:!max-w-[80vw]">
+      <div className="px-3 py-3 lg:py-[50px] lg:px-[140px] mx-auto  3xl:!max-w-[80vw]">
         <DashboardNavbar />
 
         <Routes>{roleRoutes}</Routes>

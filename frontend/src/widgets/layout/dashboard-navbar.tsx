@@ -1,4 +1,5 @@
 import { useMaterialTailwindController } from "@/context";
+import { getMenuForRole } from "@/services/menu.service";
 import { UserState } from "@/state/UserState";
 import { removeTokenFromLocalStorage } from "@/utils/Local-Storage";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BellIcon, ClockIcon, CreditCardIcon } from "@heroicons/react/24/solid";
 import {
   Avatar,
-  Breadcrumbs,
   Button,
   IconButton,
   Menu,
@@ -17,7 +17,6 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Link, useLocation } from "react-router-dom";
-import { getMenuForRole } from "@/services/menu.service";
 
 export function DashboardNavbar() {
   const user_state = UserState();
@@ -31,7 +30,7 @@ export function DashboardNavbar() {
   const [controller] = useMaterialTailwindController();
   const { fixedNavbar } = controller;
   const { pathname } = useLocation();
-  const [layout, page] = pathname.split("/").filter((el) => el !== "");
+  const [__layout, page] = pathname.split("/").filter((el) => el !== "");
 
   return (
     <Navbar
@@ -44,13 +43,13 @@ export function DashboardNavbar() {
       fullWidth
       blurred={fixedNavbar}
     >
-      <div className="w-full flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
-        <div className="capitalize">
+      <div className="w-full flex flex-col  justify-between gap-2 lg:gap-6 md:flex-row md:items-center">
+        <div className="capitalize flex lg:flex-col flex-row lg:justify-start justify-center">
           <b className="text-[30px] !text-blue-600">
             HealthCare
             <FontAwesomeIcon icon={faLeaf} />
           </b>
-          <Breadcrumbs
+          {/* <Breadcrumbs
             className={`bg-transparent p-0 transition-all ${
               fixedNavbar ? "mt-1" : ""
             }`}
@@ -71,7 +70,7 @@ export function DashboardNavbar() {
             >
               {page}
             </Typography>
-          </Breadcrumbs>
+          </Breadcrumbs> */}
           <Typography variant="h6" color="blue-gray">
             {page}
           </Typography>

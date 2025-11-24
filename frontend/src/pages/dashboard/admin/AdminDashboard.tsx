@@ -18,6 +18,7 @@ import React from "react";
 import { getAdminDashboardData } from "@/services/admin.service";
 import { useEffect, useState } from "react";
 import { NothingToShow } from "@/components/misc/NothingToShow";
+import { Loader } from "@/components/misc/Loader";
 
 interface AdminDashboardData {
   stats: {
@@ -63,7 +64,7 @@ export function AdminDashboard() {
     fetchData();
   }, []);
 
-  if (loading) return <div className="mt-12">Loading...</div>;
+  if (loading) return <Loader message="Loading dashboard data..." />;
   if (!adminData) return <div className="mt-12">Error loading data</div>;
 
   const admin_data = adminData;

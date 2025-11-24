@@ -30,6 +30,7 @@ import {
 import { VModal } from "@/utils/VModal";
 import { Controller, useForm } from "react-hook-form";
 import { NothingToShow } from "@/components/misc/NothingToShow";
+import { Loader } from "@/components/misc/Loader";
 
 interface PatientData {
   patient: {
@@ -202,7 +203,7 @@ export function PatientPrescription({ patientId }: { patientId?: string }) {
   };
 
   if (loading) {
-    return <div className="mt-6">Loading patient profile...</div>;
+    return <Loader message="Loading patient profile..." />;
   }
 
   if (error) {
@@ -542,7 +543,7 @@ function GoalForm({
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<GoalFormValues>({
     defaultValues: {
       target_type: "",
@@ -586,11 +587,12 @@ function GoalForm({
                       key={option.value}
                       type="button"
                       onClick={() => field.onChange(option.value)}
+                      disabled={isSubmitting}
                       className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition ${
                         selected
                           ? "border-blue-500 bg-blue-50 text-blue-700"
                           : "border-blue-gray-100 hover:border-blue-300"
-                      }`}
+                      } ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
                       <Icon className="w-5 h-5" />
                       <span className="text-sm font-medium">
@@ -620,7 +622,8 @@ function GoalForm({
             <input
               {...field}
               type="text"
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="e.g. 10,000 steps"
             />
           )}
@@ -643,7 +646,8 @@ function GoalForm({
               {...field}
               type="number"
               min={1}
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
             />
           )}
         />
@@ -656,9 +660,36 @@ function GoalForm({
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded-lg mt-3"
+        disabled={isSubmitting}
+        className="w-full bg-blue-600 text-white py-2 rounded-lg mt-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        Assign Goal
+        {isSubmitting ? (
+          <>
+            <svg
+              className="animate-spin h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Assigning Goal...
+          </>
+        ) : (
+          "Assign Goal"
+        )}
       </button>
     </form>
   );
@@ -684,7 +715,7 @@ function PrescriptionForm({
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<PrescriptionFormValues>({
     defaultValues: {
       medicine: "",
@@ -721,7 +752,8 @@ function PrescriptionForm({
             <input
               {...field}
               type="text"
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="e.g. Metformin 500mg"
             />
           )}
@@ -741,7 +773,8 @@ function PrescriptionForm({
             <input
               {...field}
               type="text"
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="1 tablet"
             />
           )}
@@ -761,7 +794,8 @@ function PrescriptionForm({
             <input
               {...field}
               type="text"
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Twice daily"
             />
           )}
@@ -781,7 +815,8 @@ function PrescriptionForm({
             <input
               {...field}
               type="text"
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="30 days"
             />
           )}
@@ -799,7 +834,8 @@ function PrescriptionForm({
           render={({ field }) => (
             <textarea
               {...field}
-              className="w-full border px-3 py-2 rounded-md"
+              disabled={isSubmitting}
+              className="w-full border px-3 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
               rows={3}
               placeholder="Any instructions for the patient"
             />
@@ -807,8 +843,38 @@ function PrescriptionForm({
         />
       </div>
 
-      <Button type="submit" className="w-full rounded-lg sticky bottom-0">
-        Save Prescription
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full rounded-lg sticky bottom-0 flex items-center justify-center gap-2"
+      >
+        {isSubmitting ? (
+          <>
+            <svg
+              className="animate-spin h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Saving Prescription...
+          </>
+        ) : (
+          "Save Prescription"
+        )}
       </Button>
     </form>
   );

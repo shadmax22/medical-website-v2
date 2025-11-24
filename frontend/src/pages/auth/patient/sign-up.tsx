@@ -16,6 +16,7 @@ import {
 } from "@/services/patient.service";
 import { VModal } from "@/utils/VModal";
 import { addTokenToLocalStorage } from "@/utils/Local-Storage";
+import { Loader } from "@/components/misc/Loader";
 
 interface Doctor {
   id: string;
@@ -243,7 +244,7 @@ export function SignUpPatient() {
   };
 
   return (
-    <section className="m-8 flex">
+    <section className="mx-2 my-8 lg:m-8 flex">
       {/* Left side image */}
       <div className="w-2/5 h-full hidden lg:block">
         <img
@@ -461,9 +462,7 @@ export function SignUpPatient() {
         ) : (
           <div className="mt-8 mb-2 mx-auto w-full max-w-screen-lg px-4">
             {loading ? (
-              <div className="text-center py-8">
-                <Typography>Loading doctors...</Typography>
-              </div>
+              <Loader message="Loading doctors..." />
             ) : (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">

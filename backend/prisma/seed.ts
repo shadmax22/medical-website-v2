@@ -395,9 +395,8 @@ async function main() {
           patient_id: record.user.id,
           doctor_id: record.doctor.id,
           sender_role: "doctor",
-          message: `Hello ${
-            record.user.name.split(" ")[0]
-          }, how are you feeling today?`,
+          message: `Hello ${record.user.name.split(" ")[0]
+            }, how are you feeling today?`,
           created_at: new Date(Date.now() - 1000 * 60 * 60 * 24),
         },
         {

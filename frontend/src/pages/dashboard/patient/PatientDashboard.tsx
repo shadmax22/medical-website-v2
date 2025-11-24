@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 
 import { NothingToShow } from "@/components/misc/NothingToShow";
+import { Loader } from "@/components/misc/Loader";
 import {
   createGoalTrackingEntry,
   getPatientDashboardData,
@@ -100,7 +101,7 @@ export function PatientDashboard() {
     fetchData();
   }, [refreshDashboardData]);
 
-  if (loading) return <div className="mt-12">Loading...</div>;
+  if (loading) return <Loader message="Loading patient dashboard..." />;
   if (!patientData)
     return (
       <div className="mt-12">
@@ -168,7 +169,7 @@ export function PatientDashboard() {
           </div>
         </div>
 
-        <div className="flex justify-start">
+        <div className="flex justify-center lg:justify-start">
           {goalProgress.length ? (
             <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {goalProgress.map((goal) => {
@@ -181,7 +182,7 @@ export function PatientDashboard() {
                 return (
                   <Card
                     key={goal.goal_id}
-                    className="border border-blue-gray-100 shadow-sm"
+                    className="!w-full lg:w-fit border border-blue-gray-100 shadow-sm"
                   >
                     <CardBody>
                       <div className="flex items-center justify-between mb-4">

@@ -3,6 +3,7 @@ import { Button, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { getDoctorPatientsPanel } from "@/services/patient.service";
 import { NothingToShow } from "@/components/misc/NothingToShow";
+import { Loader } from "@/components/misc/Loader";
 
 interface MinimalPatient {
   id: string;
@@ -43,7 +44,7 @@ export function PatientsProfiles() {
   };
 
   if (loading) {
-    return <div className="mt-12">Loading patients...</div>;
+    return <Loader message="Loading patients..." />;
   }
 
   if (error) {
