@@ -4,7 +4,7 @@ This repository hosts the full-stack health-coaching platform, including APIs, d
 
 ## Getting Started
 
-Click here to open [demo](https://medical-website-v2-bamtxi4nk-md-shad-alis-projects.vercel.app/).
+Click here to open [demo](https://medical-website-v2.vercel.app).
 
 # 📌 Seeded Credentials (Sample Accounts)
 
