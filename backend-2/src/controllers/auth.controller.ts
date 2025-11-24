@@ -58,6 +58,13 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
         return reply.status(401).send({ message: "Invalid credentials" });
     }
 
+    let doctor_id: string | undefined;
+
+    if (user.role === "doctor") {
+        const doctorProfile = await prisma.doctor.findUnique({ where: { user_id: user.id } });
+        doctor_id = doctorProfile?.id;
+    }
+
     const user_data = {
         id: user.id,
         name: user.name,
@@ -65,6 +72,7 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
         phone_no: user.phone_no,
         dob: user.dob,
         role: user.role,
+        ...(doctor_id ? { doctor_id } : {}),
     }
     const token = generateToken(user_data);
 

@@ -17,6 +17,7 @@ import React from "react";
 
 import { getAdminDashboardData } from "@/services/admin.service";
 import { useEffect, useState } from "react";
+import { NothingToShow } from "@/components/misc/NothingToShow";
 
 interface AdminDashboardData {
   stats: {
@@ -205,23 +206,20 @@ export function AdminDashboard() {
           </CardHeader>
 
           <CardBody className="pt-0">
-            {admin_data.recent_patients.map(
-              ({ name, age, img, date }, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-4 border-b border-blue-gray-50 py-3 last:border-none"
-                >
-                  <Avatar src={img} alt={name} title={name} size="sm" />
-                  <div>
-                    <Typography variant="small" color="blue-gray">
-                      {name}
-                    </Typography>
-                    <Typography className="text-xs text-blue-gray-500">
-                      Age {age} • {date}
-                    </Typography>
-                  </div>
-                </div>
-              )
+            {admin_data.recent_patients.length === 0 ? (
+              <NothingToShow />
+            ) : (
+              <>
+                {admin_data.recent_patients.map(
+                  ({ name, age, img, date }, index) => (
+                    <div key={index}>
+                      <Typography variant="small" color="blue-gray">
+                        {name}
+                      </Typography>
+                    </div>
+                  )
+                )}
+              </>
             )}
           </CardBody>
         </Card>

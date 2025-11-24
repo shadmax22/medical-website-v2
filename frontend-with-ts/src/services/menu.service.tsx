@@ -10,6 +10,7 @@ import {
   Cog6ToothIcon,
   HeartIcon,
 } from "@heroicons/react/24/outline";
+import { PatientsProfiles } from "@/components/patient/PatientsProfiles";
 
 export interface MenuItem {
   label: string;
@@ -22,7 +23,7 @@ export interface RoleConfig {
   menu: MenuItem[];
 }
 
-type UserRole = "admin" | "doctor" | "user";
+type UserRole = "admin" | "doctor" | "patient";
 
 const roleConfigs: Record<UserRole, RoleConfig> = {
   admin: {
@@ -65,6 +66,11 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
         path="/dashboard"
         element={<DoctorDashboard />}
       />,
+      <Route
+        key="patient-panel"
+        path="/patients"
+        element={<PatientsProfiles />}
+      />,
       // Add more doctor routes here as needed
     ],
     menu: [
@@ -74,34 +80,20 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
         icon: HomeIcon,
       },
       {
-        label: "My Patients",
-        path: "/dashboard/patients",
+        label: "Patients Panel",
+        path: "/patients",
         icon: UserGroupIcon,
-      },
-      {
-        label: "Appointments",
-        path: "/dashboard/appointments",
-        icon: ClipboardDocumentListIcon,
-      },
-      {
-        label: "Goals",
-        path: "/dashboard/goals",
-        icon: ChartBarIcon,
-      },
-      {
-        label: "Profile",
-        path: "/dashboard/profile",
-        icon: Cog6ToothIcon,
       },
     ],
   },
-  user: {
+  patient: {
     routes: [
       <Route
         key="patient-dashboard"
         path="/dashboard"
         element={<PatientDashboard />}
       />,
+
       // Add more patient routes here as needed
     ],
     menu: [
@@ -114,21 +106,6 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
         label: "My Health",
         path: "/dashboard/health",
         icon: HeartIcon,
-      },
-      {
-        label: "Appointments",
-        path: "/dashboard/appointments",
-        icon: ClipboardDocumentListIcon,
-      },
-      {
-        label: "My Goals",
-        path: "/dashboard/goals",
-        icon: ChartBarIcon,
-      },
-      {
-        label: "Profile",
-        path: "/dashboard/profile",
-        icon: Cog6ToothIcon,
       },
     ],
   },

@@ -23,7 +23,11 @@ model User {
   doctor_profile   Doctor?
   trackings        Tracking[]
   goals            Goal[]
-  assigned_doctors Doctor[]   @relation("DoctorPatients")
+  assigned_doctors Doctor[]       @relation("DoctorPatients")
+  conversations    Conversation[] @relation("PatientConversations")
+  prescriptions    Prescription[]
+  appointments     Appointment[]
+  goal_trackings   GoalTracking[]
 
   @@map("users")
 }
@@ -42,7 +46,10 @@ model Doctor {
   updated_at       DateTime @updatedAt
 
   created_goals Goal[]
-  patients      User[] @relation("DoctorPatients")
+  patients      User[]         @relation("DoctorPatients")
+  conversations Conversation[]
+  prescriptions Prescription[]
+  appointments  Appointment[]
 
   @@map("doctors_list")
 }
@@ -71,5 +78,68 @@ model Goal {
   created_at        DateTime @default(now())
   updated_at        DateTime @updatedAt
 
+  tracking_entries GoalTracking[]
+
   @@map("goals")
+}
+
+model Appointment {
+  id               String   @id @default(uuid())
+  patient_id       String
+  doctor_id        String
+  appointment_date DateTime
+  department       String
+  status           String   @default("scheduled")
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  patient User   @relation(fields: [patient_id], references: [id])
+  doctor  Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@map("appointments")
+}
+
+model Conversation {
+  id          String   @id @default(uuid())
+  patient_id  String
+  doctor_id   String
+  sender_role String
+  message     String
+  created_at  DateTime @default(now())
+
+  patient User   @relation("PatientConversations", fields: [patient_id], references: [id])
+  doctor  Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@map("conversations")
+}
+
+model Prescription {
+  id         String   @id @default(uuid())
+  patient_id String
+  doctor_id  String
+  medicine   String
+  dosage     String
+  frequency  String
+  duration   String
+  notes      String?
+  created_at DateTime @default(now())
+
+  patient User   @relation(fields: [patient_id], references: [id])
+  doctor  Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@map("prescriptions")
+}
+
+model GoalTracking {
+  id         String   @id @default(uuid())
+  goal_id    String
+  user_id    String
+  value      String?
+  entry_date DateTime @default(now())
+  created_at DateTime @default(now())
+
+  goal Goal @relation(fields: [goal_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("goal_trackings")
 }

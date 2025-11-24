@@ -273,7 +273,7 @@ export function SignUpPatient() {
 
         {step === 1 ? (
           <form
-            className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2"
+            className="mt-8 mb-2 mx-auto w-full max-w-screen-lg lg:w-full px-8"
             onSubmit={handleStep1Submit}
           >
             <div className="flex flex-col gap-5">
@@ -466,7 +466,7 @@ export function SignUpPatient() {
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
                   {doctors.map((doctor) => (
                     <Card
                       key={doctor.id}
@@ -529,7 +529,7 @@ export function SignUpPatient() {
                   ))}
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex gap-4 sticky bottom-0 bg-white py-3">
                   <Button
                     variant="outlined"
                     onClick={() => setStep(1)}
