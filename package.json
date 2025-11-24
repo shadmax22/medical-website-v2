@@ -13,7 +13,7 @@
     "b:dev": "cd backend/ && npm run dev",
     "b:i": "cd backend/ && npm i",
     "b:install": "cd backend/ && npm i",
-    "b:init": "cd backend/ && npm run init",
+    "b:init": "cd backend/ && npm i && npm run prisma:migrate && npm run prisma:seed && npm run build",
     "backend": "cd backend/ && npm run ",
     "b": "cd backend/ && npm run ",
     "frontend": "cd backend/ && npm run ",
