@@ -2,7 +2,7 @@ import axios from "axios";
 import { getTokenFromLocalStorage } from "./Local-Storage";
 
 const Api = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://medical-website-v2.onrender.com',
 });
 
 // Request interceptor to automatically add Authorization header
