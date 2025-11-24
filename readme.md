@@ -62,6 +62,35 @@ Below are **example login credentials** for quick testing.
 | `prisma/seed.ts`       | Generates 1 admin, 5 doctors, 15 patients, goals and progress entries.       |
 | `package.json`         | Node scripts (build/start/dev), Fastify + Prisma dependencies.               |
 
+
+**Tech Used**
+backend/
+│
+├── Fastify (Web Server)
+│   ├── @fastify/cors
+│   ├── @fastify/jwt
+│
+├── TypeScript (TS)
+│   ├── ts-node / ts-node-dev
+│   ├── types for node & libs
+│   └── tsc compiler
+│
+├── Prisma (ORM)
+│   ├── @prisma/client
+│   ├── prisma CLI
+│   ├── SQLite Provider
+│   └── MongoDB Provider
+│
+├── Databases
+│   ├── SQLite (local storage)
+│   └── MongoDB (production / API storage)
+│
+└── Utilities
+    ├── bcrypt / argon2 (password hashing)
+    ├── dotenv (env variables)
+    └── nodemon (dev hot reload)
+
+
 **Common commands**
 
 ```bash
@@ -83,6 +112,28 @@ Environment variables live in `backend/.env` (copy `.env.example` if provided) a
 | `src/services/`                  | Axios API clients (`auth`, `patient`, `doctor`, `admin`).         |
 | `src/layouts/dashboard.tsx`      | Shell used after login (sidebar, header, outlet).                 |
 | `vite.config.ts`, `package.json` | Vite + React configuration and scripts.                           |
+
+**Tech Stack**
+frontend/
+│
+├── Vite (Build Tool)
+│   ├── @vitejs/plugin-react
+│   └── fast refresh
+│
+├── React + TypeScript
+│   ├── react-router-dom (routing)
+│   ├── axios or fetch (API calls)
+│   └── hooks + components
+│
+├── Redux (State Management)
+│   ├── @reduxjs/toolkit
+│   └── react-redux
+│
+└── TailwindCSS (Styling)
+    ├── postcss
+    ├── autoprefixer
+    └── tailwind.config.js
+
 
 **Common commands**
 
