@@ -1,16 +1,9 @@
-import { Route } from "react-router-dom";
+import { PatientsProfiles } from "@/components/patient/PatientsProfiles";
 import AdminDashboard from "@/pages/dashboard/admin/AdminDashboard";
 import DoctorDashboard from "@/pages/dashboard/doctor/DoctorDashboard";
 import PatientDashboard from "@/pages/dashboard/patient/PatientDashboard";
-import {
-  HomeIcon,
-  UserGroupIcon,
-  ClipboardDocumentListIcon,
-  ChartBarIcon,
-  Cog6ToothIcon,
-  HeartIcon,
-} from "@heroicons/react/24/outline";
-import { PatientsProfiles } from "@/components/patient/PatientsProfiles";
+import { HomeIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { Route } from "react-router-dom";
 
 export interface MenuItem {
   label: string;
@@ -23,7 +16,7 @@ export interface RoleConfig {
   menu: MenuItem[];
 }
 
-type UserRole = "admin" | "doctor" | "patient";
+type UserRole = "admin" | "doctor" | "user";
 
 const roleConfigs: Record<UserRole, RoleConfig> = {
   admin: {
@@ -40,22 +33,6 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
         label: "Dashboard",
         path: "/dashboard",
         icon: HomeIcon,
-      },
-      {
-        label: "Doctors",
-        path: "/doctors",
-        icon: UserGroupIcon,
-      },
-      {
-        label: "Patients",
-        path: "/patients",
-        icon: UserGroupIcon,
-      },
-
-      {
-        label: "Settings",
-        path: "/dashboard/settings",
-        icon: Cog6ToothIcon,
       },
     ],
   },
@@ -86,7 +63,7 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
       },
     ],
   },
-  patient: {
+  user: {
     routes: [
       <Route
         key="patient-dashboard"
@@ -101,11 +78,6 @@ const roleConfigs: Record<UserRole, RoleConfig> = {
         label: "Dashboard",
         path: "/dashboard",
         icon: HomeIcon,
-      },
-      {
-        label: "My Health",
-        path: "/dashboard/health",
-        icon: HeartIcon,
       },
     ],
   },

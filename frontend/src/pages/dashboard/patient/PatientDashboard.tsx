@@ -1,30 +1,29 @@
 import {
-  ClipboardDocumentCheckIcon,
-  ChatBubbleLeftEllipsisIcon,
   CalendarDaysIcon,
-  CheckCircleIcon,
+  ChatBubbleLeftEllipsisIcon,
+  ClipboardDocumentCheckIcon,
 } from "@heroicons/react/24/outline";
 
 import {
   Avatar,
+  Button,
   Card,
   CardBody,
   CardHeader,
   Typography,
-  Button,
 } from "@material-tailwind/react";
 
-import Chart from "react-apexcharts";
-import React, { useCallback, useEffect, useState } from "react";
-import {
-  getPatientDashboardData,
-  createGoalTrackingEntry,
-} from "@/services/patient.service";
 import { NothingToShow } from "@/components/misc/NothingToShow";
+import {
+  createGoalTrackingEntry,
+  getPatientDashboardData,
+} from "@/services/patient.service";
 import { VModal } from "@/utils/VModal";
-import { Controller, useForm } from "react-hook-form";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback, useEffect, useState } from "react";
+import Chart from "react-apexcharts";
+import { Controller, useForm } from "react-hook-form";
 
 interface GoalProgress {
   goal_id: string;

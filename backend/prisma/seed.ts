@@ -103,66 +103,6 @@ async function main() {
       bio: "Special interest in autoimmune skin disorders.",
       portfolio_url: "https://example.com/dr-evelyn",
     },
-    {
-      name: "Dr. Farhan Ahmed",
-      email: "farhan.ahmed@hcl.com",
-      phone: "6666666666",
-      dob: "1979-12-03",
-      specialization: "Pulmonology",
-      medical_license: "LIC-1006",
-      education: "MD Pulmonology, Imperial College",
-      experience_years: 14,
-      bio: "Supports patients with long-term breathing issues.",
-      portfolio_url: "https://example.com/dr-farhan",
-    },
-    {
-      name: "Dr. Grace Nolan",
-      email: "grace.nolan@hcl.com",
-      phone: "7777777777",
-      dob: "1982-10-12",
-      specialization: "Psychiatry",
-      medical_license: "LIC-1007",
-      education: "MD Psychiatry, Columbia",
-      experience_years: 11,
-      bio: "Focus on holistic mental wellness.",
-      portfolio_url: "https://example.com/dr-grace",
-    },
-    {
-      name: "Dr. Henry Zhao",
-      email: "henry.zhao@hcl.com",
-      phone: "8888888888",
-      dob: "1974-08-06",
-      specialization: "Gastroenterology",
-      medical_license: "LIC-1008",
-      education: "MD Gastroenterology, Peking Univ.",
-      experience_years: 17,
-      bio: "Helps patients manage complex gut disorders.",
-      portfolio_url: "https://example.com/dr-henry",
-    },
-    {
-      name: "Dr. Irene Costa",
-      email: "irene.costa@hcl.com",
-      phone: "9999999999",
-      dob: "1983-03-25",
-      specialization: "Ophthalmology",
-      medical_license: "LIC-1009",
-      education: "MD Ophthalmology, Harvard",
-      experience_years: 9,
-      bio: "Expert in diabetic retinopathy monitoring.",
-      portfolio_url: "https://example.com/dr-irene",
-    },
-    {
-      name: "Dr. Jacob Rivera",
-      email: "jacob.rivera@hcl.com",
-      phone: "1010101010",
-      dob: "1977-01-30",
-      specialization: "Nephrology",
-      medical_license: "LIC-1010",
-      education: "MD Nephrology, Baylor",
-      experience_years: 15,
-      bio: "Designs kidney-care plans around lifestyle.",
-      portfolio_url: "https://example.com/dr-jacob",
-    },
   ];
 
   const doctorProfiles: Doctor[] = [];
@@ -269,12 +209,49 @@ async function main() {
       dob: "1989-01-15",
       issue: "Kidney stone history",
     },
+    {
+      name: "Lara Jensen",
+      email: "lara.jensen@hcl.com",
+      phone: "1200000011",
+      dob: "1992-02-02",
+      issue: "PCOS",
+    },
+    {
+      name: "Marcus Boyd",
+      email: "marcus.boyd@hcl.com",
+      phone: "1200000012",
+      dob: "1985-05-18",
+      issue: "Obesity",
+    },
+    {
+      name: "Priya Sharma",
+      email: "priya.sharma@hcl.com",
+      phone: "1200000013",
+      dob: "1994-08-21",
+      issue: "Vitamin D deficiency",
+    },
+    {
+      name: "Zayn Malik",
+      email: "zayn.malik@hcl.com",
+      phone: "1200000014",
+      dob: "1990-06-11",
+      issue: "Knee pain",
+    },
+    {
+      name: "Hannah Miles",
+      email: "hannah.miles@hcl.com",
+      phone: "1200000015",
+      dob: "1998-09-14",
+      issue: "Insomnia",
+    },
   ];
 
   const patientRecords: { user: User; doctor: Doctor }[] = [];
+  const primaryDoctor = doctorProfiles[0];
 
   for (const [index, patient] of patientSeedData.entries()) {
-    const doctor = doctorProfiles[index % doctorProfiles.length];
+    const doctor =
+      primaryDoctor ?? doctorProfiles[index % doctorProfiles.length];
 
     const createdPatient = await prisma.user.upsert({
       where: { email_id: patient.email },
@@ -426,7 +403,7 @@ async function main() {
         {
           patient_id: record.user.id,
           doctor_id: record.doctor.id,
-          sender_role: "patient",
+          sender_role: "user",
           message: "Feeling better after following the plan.",
           created_at: new Date(Date.now() - 1000 * 60 * 30),
         },

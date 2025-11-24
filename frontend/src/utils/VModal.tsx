@@ -1,6 +1,5 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconButton } from "@material-tailwind/react";
 import type { modalType } from "node_modules/react-easetools/dist/components/modal/types/modal.type";
 // import { title } from "process";
 import { Modal } from "react-easetools";

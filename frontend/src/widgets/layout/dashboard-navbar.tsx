@@ -1,20 +1,14 @@
-import { setOpenSidenav, useMaterialTailwindController } from "@/context";
+import { useMaterialTailwindController } from "@/context";
 import { UserState } from "@/state/UserState";
 import { removeTokenFromLocalStorage } from "@/utils/Local-Storage";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  Bars3Icon,
-  BellIcon,
-  ClockIcon,
-  CreditCardIcon,
-} from "@heroicons/react/24/solid";
+import { BellIcon, ClockIcon, CreditCardIcon } from "@heroicons/react/24/solid";
 import {
   Avatar,
   Breadcrumbs,
   Button,
   IconButton,
-  Input,
   Menu,
   MenuHandler,
   MenuItem,
@@ -34,8 +28,8 @@ export function DashboardNavbar() {
     user_data?.user_data?.role as "admin" | "doctor" | "user"
   );
 
-  const [controller, dispatch] = useMaterialTailwindController();
-  const { fixedNavbar, openSidenav } = controller;
+  const [controller] = useMaterialTailwindController();
+  const { fixedNavbar } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
 

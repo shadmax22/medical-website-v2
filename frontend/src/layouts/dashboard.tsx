@@ -1,22 +1,15 @@
-import { Routes } from "react-router-dom";
+import { setOpenConfigurator, useMaterialTailwindController } from "@/context";
+import { getRoutesForRole } from "@/services/menu.service";
+import { UserState } from "@/state/UserState";
+import { Configurator, DashboardNavbar, Footer } from "@/widgets/layout";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
-import {
-  Sidenav,
-  DashboardNavbar,
-  Configurator,
-  Footer,
-} from "@/widgets/layout";
-import routes from "@/routes";
-import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
-import { UserState } from "@/state/UserState";
-import { getRoutesForRole } from "@/services/menu.service";
+import { Routes } from "react-router-dom";
 
 export function Dashboard() {
   const user_state = UserState();
   const user_state_data = user_state.get();
-  const [controller, dispatch] = useMaterialTailwindController();
-  const { sidenavType } = controller;
+  const [, dispatch] = useMaterialTailwindController();
 
   // Get routes based on user role
   const userRole = user_state_data?.user_data?.role as
@@ -27,7 +20,7 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <div className="py-[50px] px-[140px]">
+      <div className="px-3 py-3 lg:py-[50px] lg:px-[140px]">
         <DashboardNavbar />
         <Configurator />
         <IconButton

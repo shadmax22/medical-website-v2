@@ -205,23 +205,49 @@ export function AdminDashboard() {
             </Typography>
           </CardHeader>
 
-          <CardBody className="pt-0">
-            {admin_data.recent_patients.length === 0 ? (
+          {admin_data.recent_patients.length === 0 ? (
+            <CardBody className="pt-0">
               <NothingToShow />
-            ) : (
-              <>
-                {admin_data.recent_patients.map(
-                  ({ name, age, img, date }, index) => (
-                    <div key={index}>
-                      <Typography variant="small" color="blue-gray">
-                        {name}
-                      </Typography>
-                    </div>
-                  )
-                )}
-              </>
-            )}
-          </CardBody>
+            </CardBody>
+          ) : (
+            <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+              <table className="w-full min-w-[320px] table-auto">
+                <thead>
+                  <tr>
+                    {["Patient", "Age", "Onboarded On"].map((heading) => (
+                      <th
+                        key={heading}
+                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                      >
+                        <Typography
+                          variant="small"
+                          className="text-[11px] font-medium uppercase text-blue-gray-400"
+                        >
+                          {heading}
+                        </Typography>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {admin_data.recent_patients.map(
+                    ({ name, age, img, date }, index) => (
+                      <tr key={`${name}-${index}`}>
+                        <td className="py-3 px-6">
+                          <div className="flex items-center gap-4">
+                            <Avatar src={img} alt={name} size="sm" />
+                            <Typography color="blue-gray">{name}</Typography>
+                          </div>
+                        </td>
+                        <td className="py-3 px-6">{age}</td>
+                        <td className="py-3 px-6">{date}</td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </CardBody>
+          )}
         </Card>
       </div>
       ----------------------------------------------------------------------

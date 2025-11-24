@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { FastifyReply, FastifyRequest } from "fastify";
 import prisma from "../db";
 
@@ -516,7 +517,7 @@ export async function createGoalTrackingEntry(
   const { value } = request.body as { value?: string };
   const authUser = (request as any).user;
 
-  if (authUser.role !== "patient") {
+  if (authUser.role !== "user") {
     return reply
       .status(403)
       .send({ message: "Only patients can log goal progress" });

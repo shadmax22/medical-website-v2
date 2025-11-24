@@ -1,4 +1,4 @@
-import { SignIn, SignUp } from "@/pages/auth";
+import { SignIn } from "@/pages/auth";
 import SignUpPatient from "@/pages/auth/patient/sign-up";
 import { Route, Routes } from "react-router-dom";
 
