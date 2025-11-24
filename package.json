@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "frontend:i": "cd frontend/ && npm i",
+    "frontend:install": "cd frontend/ && npm i",
+    "frontend:dev": "cd frontend/ && npm run dev",
+    "f:i": "cd frontend/ && npm i",
+    "f:install": "cd frontend/ && npm i",
+    "f:dev": "cd frontend/ && npm run dev",
+    "backend:dev": "cd backend/ && npm run dev",
+    "backend:i": "cd backend/ && npm i",
+    "backend:install": "cd backend/ && npm i",
+    "backend:init": "cd backend/ && npm run init",
+    "b:dev": "cd backend/ && npm run dev",
+    "b:i": "cd backend/ && npm i",
+    "b:install": "cd backend/ && npm i",
+    "b:init": "cd backend/ && npm run init",
+    "backend": "cd backend/ && npm run ",
+    "b": "cd backend/ && npm run ",
+    "frontend": "cd backend/ && npm run ",
+    "f": "cd frontend/ && npm run "
+  },
+  "prisma": {
+    "seed": "npx ts-node prisma/seed.ts"
+  }
+}
