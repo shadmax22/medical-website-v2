@@ -19,5 +19,56 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
+  doctor_profile   Doctor?
+  trackings        Tracking[]
+  goals            Goal[]
+  assigned_doctors Doctor[]   @relation("DoctorPatients")
+
   @@map("users")
+}
+
+model Doctor {
+  id               String   @id @default(uuid())
+  user_id          String   @unique
+  user             User     @relation(fields: [user_id], references: [id])
+  specialization   String
+  medical_license  String
+  education        String
+  experience_years Int
+  bio              String?
+  portfolio_url    String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  created_goals Goal[]
+  patients      User[] @relation("DoctorPatients")
+
+  @@map("doctors_list")
+}
+
+model Tracking {
+  id                 String   @id @default(uuid())
+  user_id            String
+  user               User     @relation(fields: [user_id], references: [id])
+  value              String
+  tracking_type_unit String
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  @@map("trackings")
+}
+
+model Goal {
+  id                String   @id @default(uuid())
+  user_id           String
+  user              User     @relation(fields: [user_id], references: [id])
+  doctor_id         String
+  doctor            Doctor   @relation(fields: [doctor_id], references: [id])
+  goal_target_value String
+  target_type       String
+  frequency         Int
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  @@map("goals")
 }

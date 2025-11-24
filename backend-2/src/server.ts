@@ -3,6 +3,8 @@ import { publicRoutes } from "./routes/public.route";
 import { privateRoutes } from "./routes/private.route";
 import prisma from "./db";
 
+import { doctorRoutes } from "./routes/doctor.route";
+
 const fastify = Fastify({
   logger: true,
 });
@@ -14,7 +16,7 @@ fastify.get("/", async () => {
 
 fastify.register(publicRoutes);
 fastify.register(privateRoutes);
-
+fastify.register(doctorRoutes, { prefix: "/doctors" });
 // Start server
 async function start() {
   try {
